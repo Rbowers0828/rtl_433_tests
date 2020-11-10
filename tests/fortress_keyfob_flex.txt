@@ -1,0 +1,1310 @@
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -h
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Generic RF data receiver and decoder for ISM band devices using RTL-SDR and SoapySDR.
+
+Usage:
+		= General options =
+  [-V] Output the version string and exit
+  [-v] Increase verbosity (can be used multiple times).
+       -v : verbose, -vv : verbose decoders, -vvv : debug decoders, -vvvv : trace decoding).
+  [-c <path>] Read config options from a file
+		= Tuner options =
+  [-d <RTL-SDR USB device index> | :<RTL-SDR USB device serial> | <SoapySDR device query> | rtl_tcp | help]
+  [-g <gain> | help] (default: auto)
+  [-t <settings>] apply a list of keyword=value settings for SoapySDR devices
+       e.g. -t "antenna=A,bandwidth=4.5M,rfnotch_ctrl=false"
+  [-f <frequency>] Receive frequency(s) (default: 433920000 Hz)
+  [-H <seconds>] Hop interval for polling of multiple frequencies (default: 600 seconds)
+  [-p <ppm_error] Correct rtl-sdr tuner frequency offset error (default: 0)
+  [-s <sample rate>] Set sample rate (default: 250000 Hz)
+		= Demodulator options =
+  [-R <device> | help] Enable only the specified device decoding protocol (can be used multiple times)
+       Specify a negative number to disable a device decoding protocol (can be used multiple times)
+  [-G] Enable blacklisted device decoding protocols, for testing only.
+  [-X <spec> | help] Add a general purpose decoder (prepend -R 0 to disable all decoders)
+  [-Y level=<dB level>] Manual detection level used to determine pulses (-1.0 to -30.0) (0=auto)
+  [-n <value>] Specify number of samples to take (each sample is 2 bytes: 1 each of I & Q)
+  [-Y auto | classic | minmax] FSK pulse detector mode.
+		= Analyze/Debug options =
+  [-a] Analyze mode. Print a textual description of the signal.
+  [-A] Pulse Analyzer. Enable pulse analysis and decode attempt.
+       Disable all decoders with -R 0 if you want analyzer output only.
+  [-y <code>] Verify decoding of demodulated test data (e.g. "{25}fb2dd58") with enabled devices
+		= File I/O options =
+  [-S none | all | unknown | known] Signal auto save. Creates one file per signal.
+       Note: Saves raw I/Q samples (uint8 pcm, 2 channel). Preferred mode for generating test files.
+  [-r <filename> | help] Read data from input file instead of a receiver
+  [-w <filename> | help] Save data stream to output file (a '-' dumps samples to stdout)
+  [-W <filename> | help] Save data stream to output file, overwrite existing file
+		= Data output options =
+  [-F kv | json | csv | mqtt | influx | syslog | null | help] Produce decoded output in given format.
+       Append output to file with :<filename> (e.g. -F csv:log.csv), defaults to stdout.
+       Specify host/port for syslog with e.g. -F syslog:127.0.0.1:1514
+  [-M time[:<options>] | protocol | level | stats | bits | help] Add various meta data to each output.
+  [-K FILE | PATH | <tag> | <key>=<value>] Add an expanded token or fixed tag to every output line.
+  [-C native | si | customary] Convert units in decoded output.
+  [-T <seconds>] Specify number of seconds to run, also 12:34 or 1h23m45s
+  [-E hop | quit] Hop/Quit after outputting successful event(s)
+  [-h] Output this usage help and exit
+       Use -d, -g, -R, -X, -F, -M, -r, -w, or -W without argument for more help
+
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ man rtl_433
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ man rtl_433 > ~/Documents/rtl_433_man.txt
+troff: <standard input>:297: warning [p 4, 3.7i]: can't break line
+troff: <standard input>:333: warning [p 4, 6.8i]: can't break line
+troff: <standard input>:342: warning [p 4, 8.0i]: can't break line
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ man rtl_433 >> ~/Documents/rtl_433_man.txt
+troff: <standard input>:297: warning [p 4, 3.7i]: can't break line
+troff: <standard input>:333: warning [p 4, 6.8i]: can't break line
+troff: <standard input>:342: warning [p 4, 8.0i]: can't break line
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ man rtl_433  ~/Documents/rtl_433_man.txt
+man: rtl_433-/home/rich/Documents/rtl_433_man.txt: No such file or directory
+man: rtl_433_/home/rich/Documents/rtl_433_man.txt: No such file or directory
+--Man-- next: rtl_433_man.txt [ view (return) | skip (Ctrl-D) | quit (Ctrl-C) ]
+q
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ man rtl_433 |  ~/Documents/rtl_433_man.txt
+bash: /home/rich/Documents/rtl_433_man.txt: Permission denied
+troff: <standard input>:297: warning [p 4, 3.7i]: can't break line
+troff: <standard input>:333: warning [p 4, 6.8i]: can't break line
+troff: <standard input>:342: warning [p 4, 8.0i]: can't break line
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -a 4
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Registered 143 out of 173 device decoding protocols [ 1-4 8 11-12 15-17 19-21 23 25-26 29-36 38-60 63 67-71 73-100 102-105 108-116 119 121 124-128 130-149 151-161 163-168 170-173 ]
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Exact sample rate is: 250000.000414 Hz
+[R82XX] PLL not locked!
+Sample rate set to 250000 S/s.
+Tuner gain set to Auto.
+Tuned to 433.920MHz.
+Allocating 15 zero-copy buffers
+*** signal_start = 1607222, signal_end = 1685312, signal_len = 78090, pulses_found = 86
+Iteration 1. t: 272    min: 135 (50)    max: 410 (36)    delta 25
+Iteration 2. t: 272    min: 135 (50)    max: 410 (36)    delta 0
+Pulse coding: Short pulse length 135 - Long pulse length 410
+
+Short distance: 137, long distance: 410, packet distance: 4233
+
+p_limit: 272
+bitbuffer:: Number of rows: 4 
+[00] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[01] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[02] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[03] {11} 1d c0       : 00011101 110
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:45:45
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:45:45
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:45:45
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+*** signal_start = 3215470, signal_end = 3283720, signal_len = 68250, pulses_found = 80
+Iteration 1. t: 264    min: 124 (50)    max: 404 (30)    delta 14965
+Iteration 2. t: 264    min: 124 (50)    max: 404 (30)    delta 0
+Pulse coding: Short pulse length 124 - Long pulse length 404
+
+Short distance: 126, long distance: 411, packet distance: 4232
+
+p_limit: 264
+bitbuffer:: Number of rows: 3 
+[00] {25} 1d d4 c0 00 : 00011101 11010100 11000000 0
+[01] {25} 1d d4 c0 00 : 00011101 11010100 11000000 0
+[02] {30} 18 b5 4a 00 : 00011000 10110101 01001010 000000
+*** signal_start = 4171116, signal_end = 4252991, signal_len = 81875, pulses_found = 102
+Iteration 1. t: 256    min: 125 (64)    max: 388 (38)    delta 15754
+Iteration 2. t: 259    min: 126 (65)    max: 393 (37)    delta 26
+Iteration 3. t: 259    min: 126 (65)    max: 393 (37)    delta 0
+Pulse coding: Short pulse length 126 - Long pulse length 393
+
+Short distance: 120, long distance: 411, packet distance: 4234
+
+p_limit: 259
+bitbuffer:: Number of rows: 4 
+[00] {28} 12 9a 80 60 : 00010010 10011010 10000000 0110
+[01] {26} 1c ea 01 80 : 00011100 11101010 00000001 10
+[02] {27} 1d c9 00 c0 : 00011101 11001001 00000000 110
+[03] {21} 16 9a 80    : 00010110 10011010 10000
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:45:52
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:45:52
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:45:52
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+*** signal_start = 5097885, signal_end = 5194657, signal_len = 96772, pulses_found = 92
+Iteration 1. t: 271    min: 133 (54)    max: 410 (38)    delta 14900
+Iteration 2. t: 271    min: 133 (54)    max: 410 (38)    delta 0
+Pulse coding: Short pulse length 133 - Long pulse length 410
+
+Short distance: 291, long distance: 4229, packet distance: 15939
+
+p_limit: 271
+bitbuffer:: Number of rows: 2 
+[00] {91} 1d d4 30 0e ea 18 07 75 0c 03 ba 80 
+[01] { 1} 00                                  : 0
+^CSignal caught, exiting!
+Reattached kernel driver
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -G
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+rtl_433: option requires an argument -- 'G'
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+rtl_433: option requires an argument -- 'G'
+
+	Use -G for testing only. Enable with -G 4 if you really mean it.
+
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -G 4
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+
+	Use -G for testing only. Enable protocols with -R if you really need them.
+
+Registered 167 out of 173 device decoding protocols [ 1-4 6-8 10-17 19-26 29-64 67-173 ]
+rtl_433: warning: 106 "Wireless M-Bus, Mode R, 4.8kbps (-f 868330000)" does not support CSV output
+rtl_433: warning: 107 "Wireless M-Bus, Mode F, 2.4kbps" does not support CSV output
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Exact sample rate is: 250000.000414 Hz
+[R82XX] PLL not locked!
+Sample rate set to 250000 S/s.
+Tuner gain set to Auto.
+Tuned to 433.920MHz.
+Allocating 15 zero-copy buffers
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:14
+model     : Acurite-Rain id        : 226
+Total Rain: 1529.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:14
+model     : Acurite-Rain id        : 226
+Total Rain: 1529.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:14
+model     : Acurite-Rain id        : 226
+Total Rain: 1529.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:16
+model     : Acurite-Rain id        : 226
+Total Rain: 1439.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:16
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:16
+model     : Acurite-Rain id        : 226
+Total Rain: 1439.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:16
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:16
+model     : Acurite-Rain id        : 226
+Total Rain: 1439.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:16
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:19
+model     : Acurite-Rain id        : 226
+Total Rain: 1534.0 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:19
+model     : Acurite-Rain id        : 226
+Total Rain: 1534.0 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:19
+model     : Acurite-Rain id        : 226
+Total Rain: 1534.0 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:21
+model     : Acurite-Rain id        : 226
+Total Rain: 1511.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:21
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:21
+model     : Acurite-Rain id        : 226
+Total Rain: 1511.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:21
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:21
+model     : Acurite-Rain id        : 226
+Total Rain: 1511.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:46:21
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+^CSignal caught, exiting!
+Reattached kernel driver
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -S
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+rtl_433: option requires an argument -- 'S'
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+rtl_433: option requires an argument -- 'S'
+Generic RF data receiver and decoder for ISM band devices using RTL-SDR and SoapySDR.
+
+Usage:
+		= General options =
+  [-V] Output the version string and exit
+  [-v] Increase verbosity (can be used multiple times).
+       -v : verbose, -vv : verbose decoders, -vvv : debug decoders, -vvvv : trace decoding).
+  [-c <path>] Read config options from a file
+		= Tuner options =
+  [-d <RTL-SDR USB device index> | :<RTL-SDR USB device serial> | <SoapySDR device query> | rtl_tcp | help]
+  [-g <gain> | help] (default: auto)
+  [-t <settings>] apply a list of keyword=value settings for SoapySDR devices
+       e.g. -t "antenna=A,bandwidth=4.5M,rfnotch_ctrl=false"
+  [-f <frequency>] Receive frequency(s) (default: 433920000 Hz)
+  [-H <seconds>] Hop interval for polling of multiple frequencies (default: 600 seconds)
+  [-p <ppm_error] Correct rtl-sdr tuner frequency offset error (default: 0)
+  [-s <sample rate>] Set sample rate (default: 250000 Hz)
+		= Demodulator options =
+  [-R <device> | help] Enable only the specified device decoding protocol (can be used multiple times)
+       Specify a negative number to disable a device decoding protocol (can be used multiple times)
+  [-G] Enable blacklisted device decoding protocols, for testing only.
+  [-X <spec> | help] Add a general purpose decoder (prepend -R 0 to disable all decoders)
+  [-Y level=<dB level>] Manual detection level used to determine pulses (-1.0 to -30.0) (0=auto)
+  [-n <value>] Specify number of samples to take (each sample is 2 bytes: 1 each of I & Q)
+  [-Y auto | classic | minmax] FSK pulse detector mode.
+		= Analyze/Debug options =
+  [-a] Analyze mode. Print a textual description of the signal.
+  [-A] Pulse Analyzer. Enable pulse analysis and decode attempt.
+       Disable all decoders with -R 0 if you want analyzer output only.
+  [-y <code>] Verify decoding of demodulated test data (e.g. "{25}fb2dd58") with enabled devices
+		= File I/O options =
+  [-S none | all | unknown | known] Signal auto save. Creates one file per signal.
+       Note: Saves raw I/Q samples (uint8 pcm, 2 channel). Preferred mode for generating test files.
+  [-r <filename> | help] Read data from input file instead of a receiver
+  [-w <filename> | help] Save data stream to output file (a '-' dumps samples to stdout)
+  [-W <filename> | help] Save data stream to output file, overwrite existing file
+		= Data output options =
+  [-F kv | json | csv | mqtt | influx | syslog | null | help] Produce decoded output in given format.
+       Append output to file with :<filename> (e.g. -F csv:log.csv), defaults to stdout.
+       Specify host/port for syslog with e.g. -F syslog:127.0.0.1:1514
+  [-M time[:<options>] | protocol | level | stats | bits | help] Add various meta data to each output.
+  [-K FILE | PATH | <tag> | <key>=<value>] Add an expanded token or fixed tag to every output line.
+  [-C native | si | customary] Convert units in decoded output.
+  [-T <seconds>] Specify number of seconds to run, also 12:34 or 1h23m45s
+  [-E hop | quit] Hop/Quit after outputting successful event(s)
+  [-h] Output this usage help and exit
+       Use -d, -g, -R, -X, -F, -M, -r, -w, or -W without argument for more help
+
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -S all
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Registered 143 out of 173 device decoding protocols [ 1-4 8 11-12 15-17 19-21 23 25-26 29-36 38-60 63 67-71 73-100 102-105 108-116 119 121 124-128 130-149 151-161 163-168 170-173 ]
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Exact sample rate is: 250000.000414 Hz
+[R82XX] PLL not locked!
+Sample rate set to 250000 S/s.
+Tuner gain set to Auto.
+Tuned to 433.920MHz.
+Allocating 15 zero-copy buffers
+*** Saving signal to file g001_433.92M_250k.cu8 (137724 samples, 393216 bytes)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:24
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:24
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:25
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:25
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:25
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+*** Saving signal to file g002_433.92M_250k.cu8 (120256 samples, 262144 bytes)
+*** Saving signal to file g003_433.92M_250k.cu8 (118124 samples, 262144 bytes)
+*** Saving signal to file g004_433.92M_250k.cu8 (90734 samples, 262144 bytes)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:33
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:33
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:33
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:33
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:33
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:47:33
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+*** Saving signal to file g005_433.92M_250k.cu8 (162799 samples, 393216 bytes)
+*** Saving signal to file g006_433.92M_250k.cu8 (98175 samples, 262144 bytes)
+^CSignal caught, exiting!
+Reattached kernel driver
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -X "n=Fortress_keyfob, m=OOK_PWM,s=560,l=1656,r=1636,g=0,t=436,y=0"
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Registered 144 out of 173 device decoding protocols [ 1-4 8 11-12 15-17 19-21 23 25-26 29-36 38-60 63 67-71 73-100 102-105 108-116 119 121 124-128 130-149 151-161 163-168 170-173 ]
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Exact sample rate is: 250000.000414 Hz
+[R82XX] PLL not locked!
+Sample rate set to 250000 S/s.
+Tuner gain set to Auto.
+Tuned to 433.920MHz.
+Allocating 15 zero-copy buffers
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:14
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:14
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:14
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:14
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:14
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:14
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:19
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:25
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:25
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:25
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:25
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 18           data      : e22bc
+codes     : {18}e22bc
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:28
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:28
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:28
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:28
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:28
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:28
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:50:28
+model     : Fortress_keyfob                        count     : 1
+num_rows  : 1            rows      : 
+len       : 18           data      : e22bc
+codes     : {18}e22bc
+^CSignal caught, exiting!
+Reattached kernel driver
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -X "n=Chuango-Security, m=OOK_PWM,s=560,l=1656,r=1636,g=0,t=436,y=0"
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Registered 144 out of 173 device decoding protocols [ 1-4 8 11-12 15-17 19-21 23 25-26 29-36 38-60 63 67-71 73-100 102-105 108-116 119 121 124-128 130-149 151-161 163-168 170-173 ]
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Exact sample rate is: 250000.000414 Hz
+[R82XX] PLL not locked!
+Sample rate set to 250000 S/s.
+Tuner gain set to Auto.
+Tuned to 433.920MHz.
+Allocating 15 zero-copy buffers
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:12
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:12
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:12
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:12
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:12
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 19           data      : e22be
+codes     : {19}e22be
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:12
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 1            data      : 8
+codes     : {1}8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:15
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:18
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:18
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:18
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:18
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:18
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 5            data      : e8
+codes     : {5}e8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:51:21
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:52:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 4            data      : f
+codes     : {4}f
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:52:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 5            data      : 78
+codes     : {5}78
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:52:17
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 1            data      : 8
+codes     : {1}8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:52:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 19           data      : 7fffe
+codes     : {19}7fffe
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:52:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 23           data      : 7ffffe
+codes     : {23}7ffffe
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:52:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 17           data      : 7fff8
+codes     : {17}7fff8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:52:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 19           data      : 7fffe
+codes     : {19}7fffe
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:52:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 20           data      : 7ffff
+codes     : {20}7ffff
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:52:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 20           data      : 7ffff
+codes     : {20}7ffff
+^CSignal caught, exiting!
+Reattached kernel driver
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -X "n=Chuango-Security, m=OOK_PWM,s=564,l=1660,r=1632,g=0,t=436,y=0"
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Registered 144 out of 173 device decoding protocols [ 1-4 8 11-12 15-17 19-21 23 25-26 29-36 38-60 63 67-71 73-100 102-105 108-116 119 121 124-128 130-149 151-161 163-168 170-173 ]
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Exact sample rate is: 250000.000414 Hz
+[R82XX] PLL not locked!
+Sample rate set to 250000 S/s.
+Tuner gain set to Auto.
+Tuned to 433.920MHz.
+Allocating 15 zero-copy buffers
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:17
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 6            data      : fc
+codes     : {6}fc
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:19
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:19
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:19
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:19
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:19
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 12           data      : e23
+codes     : {12}e23
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:22
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:22
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:22
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:22
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:22
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:22
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:22
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:22
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:22
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 8            data      : e3
+codes     : {8}e3
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:25
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:25
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:25
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:25
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:25
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 4            data      : e
+codes     : {4}e
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 11           data      : e22
+codes     : {11}e22
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:53:28
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 1            data      : 8
+codes     : {1}8
+^CSignal caught, exiting!
+Reattached kernel driver
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -X "n=Chuango-Security, m=OOK_PWM,s=568,l=1656,r=1636,g=0,t=0,y=832"
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Registered 144 out of 173 device decoding protocols [ 1-4 8 11-12 15-17 19-21 23 25-26 29-36 38-60 63 67-71 73-100 102-105 108-116 119 121 124-128 130-149 151-161 163-168 170-173 ]
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Exact sample rate is: 250000.000414 Hz
+[R82XX] PLL not locked!
+Sample rate set to 250000 S/s.
+Tuner gain set to Auto.
+Tuned to 433.920MHz.
+Allocating 15 zero-copy buffers
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:15
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 2            data      : c
+codes     : {2}c
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 13           data      : e228
+codes     : {13}e228
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:17
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 1            data      : 8
+codes     : {1}8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:20
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:20
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:20
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:20
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:20
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:21
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 1            data      : 0
+codes     : {1}0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:21
+model     : Chuango-Security                       count     : 2
+num_rows  : 2            rows      : 
+len       : 9            data      : ff8, 
+len       : 2            data      : c
+codes     : {9}ff8, {2}c
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:24
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:24
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:24
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:24
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:55:24
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 11           data      : e22
+codes     : {11}e22
+^CSignal caught, exiting!
+Reattached kernel driver
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ rtl_433 -X "n=Chuango-Security, m=OOK_PWM,s=560,l=1660,r=1636,g=0,t=440,y=0"
+rtl_433 version 20.02-243-gc4d9e95 branch master at 202011101312 inputs file rtl_tcp RTL-SDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Registered 144 out of 173 device decoding protocols [ 1-4 8 11-12 15-17 19-21 23 25-26 29-36 38-60 63 67-71 73-100 102-105 108-116 119 121 124-128 130-149 151-161 163-168 170-173 ]
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Exact sample rate is: 250000.000414 Hz
+[R82XX] PLL not locked!
+Sample rate set to 250000 S/s.
+Tuner gain set to Auto.
+Tuned to 433.920MHz.
+Allocating 15 zero-copy buffers
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:39
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:39
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:39
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:39
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bf38
+codes     : {25}e22bf38
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:41
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:41
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:41
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:41
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:41
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:41
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:41
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22b3f8
+codes     : {25}e22b3f8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:41
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:41
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 3            data      : e
+codes     : {3}e
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:44
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:44
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:44
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:44
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bfc8
+codes     : {25}e22bfc8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:47
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:47
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:47
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:47
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:47
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:47
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:47
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 25           data      : e22bcf8
+codes     : {25}e22bcf8
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:47
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-10 07:56:47
+model     : Chuango-Security                       count     : 1
+num_rows  : 1            rows      : 
+len       : 20           data      : e22bc
+codes     : {20}e22bc
+^CSignal caught, exiting!
+Reattached kernel driver
+rich@rich-Inspiron-13-7378:~/rtl_433/build$ 

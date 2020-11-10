@@ -1,0 +1,479 @@
+rich@rich-Inspiron-13-7378:~$ rtl_433 -G 4
+rtl_433 version unknown inputs file rtl_tcp RTL-SDR SoapySDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+
+	Use -G for testing only. Enable protocols with -R if you really need them.
+
+Registered 143 out of 149 device decoding protocols [ 1-4 6-8 10-17 19-26 29-64 67-149 ]
+rtl_433: warning: 106 "Wireless M-Bus, Mode R, 4.8kbps (-f 868330000)" does not support CSV output
+rtl_433: warning: 107 "Wireless M-Bus, Mode F, 2.4kbps" does not support CSV output
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Exact sample rate is: 250000.000414 Hz
+[R82XX] PLL not locked!
+Sample rate set to 250000 S/s.
+Tuner gain set to Auto.
+Tuned to 433.920MHz.
+Allocating 15 zero-copy buffers
+
+disarm button
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:09
+model     : Acurite-Rain id        : 226
+Total Rain: 1529.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:09
+model     : Acurite-Rain id        : 226
+Total Rain: 1529.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:09
+model     : Acurite-Rain id        : 226
+Total Rain: 1529.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:15
+model     : Acurite-Rain id        : 226
+Total Rain: 1439.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:15
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:16
+model     : Acurite-Rain id        : 226
+Total Rain: 1439.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:16
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:20
+model     : Acurite-Rain id        : 226
+Total Rain: 1534.0 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:20
+model     : Acurite-Rain id        : 226
+Total Rain: 1534.0 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:20
+model     : Acurite-Rain id        : 226
+Total Rain: 1534.0 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:24
+model     : Acurite-Rain id        : 226
+Total Rain: 1511.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:24
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:24
+model     : Acurite-Rain id        : 226
+Total Rain: 1511.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:24
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:24
+model     : Acurite-Rain id        : 226
+Total Rain: 1511.5 mm
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 10:06:24
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+^CSignal caught, exiting!
+Reattached kernel driver
+rich@rich-Inspiron-13-7378:~$ 
+
+
+
+********************************************************************************************************************
+
+*** Saving signal to file g001_433.92M_250k.cu8 (127484 samples, 262144 bytes)
+
+Fortress_S02_Keyfob Disarm Button
+
+rtl_433 -r g001_433.92M_250k.cu8 -a 4 -A
+rtl_433 version unknown inputs file rtl_tcp RTL-SDR SoapySDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Registered 122 out of 149 device decoding protocols [ 1-4 8 11-12 15-17 19-21 23 25-26 29-36 38-60 63 67-71 73-100 102-105 108-116 119 121 124-128 130-149 ]
+Test mode active. Reading samples from file: g001_433.92M_250k.cu8
+Detected OOK package	@0.079888s
+Analyzing pulses...
+Total count:   25,  width: 53.13 ms		(13282 S)
+Pulse width distribution:
+ [ 0] count:   15,  width:  560 us [556;580]	( 140 S)
+ [ 1] count:   10,  width: 1656 us [1652;1664]	( 414 S)
+Gap width distribution:
+ [ 0] count:   14,  width: 1624 us [1620;1632]	( 406 S)
+ [ 1] count:   10,  width:  532 us [524;544]	( 133 S)
+Pulse period distribution:
+ [ 0] count:   24,  width: 2188 us [2184;2200]	( 547 S)
+Level estimates [high, low]:  15940,      6
+RSSI: -0.1 dB SNR: 34.2 dB Noise: -34.4 dB
+Frequency offsets [F1, F2]:  -16843,      0	(-64.3 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with fixed period
+Attempting demodulation... short_width: 560, long_width: 1656, reset_limit: 1636, sync_width: 0
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=560,l=1656,r=1636,g=0,t=436,y=0'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 1 
+[00] {25} e2 2b f3 80 : 11100010 00101011 11110011 1
+
+Detected OOK package	@0.149932s
+Analyzing pulses...
+Total count:   25,  width: 53.15 ms		(13288 S)
+Pulse width distribution:
+ [ 0] count:   15,  width:  564 us [560;576]	( 141 S)
+ [ 1] count:   10,  width: 1660 us [1656;1668]	( 415 S)
+Gap width distribution:
+ [ 0] count:   14,  width: 1624 us [1620;1628]	( 406 S)
+ [ 1] count:   10,  width:  528 us [528;536]	( 132 S)
+Pulse period distribution:
+ [ 0] count:   24,  width: 2188 us [2184;2204]	( 547 S)
+Level estimates [high, low]:  16002,      4
+RSSI: -0.1 dB SNR: 36.0 dB Noise: -36.1 dB
+Frequency offsets [F1, F2]:  -17132,      0	(-65.4 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with fixed period
+Attempting demodulation... short_width: 564, long_width: 1660, reset_limit: 1632, sync_width: 0
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=564,l=1660,r=1632,g=0,t=436,y=0'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 1 
+[00] {25} e2 2b f3 80 : 11100010 00101011 11110011 1
+
+Detected OOK package	@0.220000s
+Analyzing pulses...
+Total count:   25,  width: 53.17 ms		(13293 S)
+Pulse width distribution:
+ [ 0] count:   15,  width:  564 us [564;576]	( 141 S)
+ [ 1] count:   10,  width: 1660 us [1660;1668]	( 415 S)
+Gap width distribution:
+ [ 0] count:   14,  width: 1624 us [1620;1628]	( 406 S)
+ [ 1] count:   10,  width:  528 us [528;536]	( 132 S)
+Pulse period distribution:
+ [ 0] count:   24,  width: 2192 us [2188;2204]	( 548 S)
+Level estimates [high, low]:  15913,      6
+RSSI: -0.1 dB SNR: 34.2 dB Noise: -34.4 dB
+Frequency offsets [F1, F2]:  -18291,      0	(-69.8 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with fixed period
+Attempting demodulation... short_width: 564, long_width: 1660, reset_limit: 1632, sync_width: 0
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=564,l=1660,r=1632,g=0,t=436,y=0'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 1 
+[00] {25} e2 2b f3 80 : 11100010 00101011 11110011 1
+
+Detected OOK package	@0.290088s
+Analyzing pulses...
+Total count:   25,  width: 53.18 ms		(13296 S)
+Pulse width distribution:
+ [ 0] count:   15,  width:  564 us [560;580]	( 141 S)
+ [ 1] count:   10,  width: 1660 us [1660;1668]	( 415 S)
+Gap width distribution:
+ [ 0] count:   14,  width: 1624 us [1624;1628]	( 406 S)
+ [ 1] count:   10,  width:  532 us [528;536]	( 133 S)
+Pulse period distribution:
+ [ 0] count:   24,  width: 2192 us [2188;2208]	( 548 S)
+Level estimates [high, low]:  15890,      8
+RSSI: -0.1 dB SNR: 33.0 dB Noise: -33.1 dB
+Frequency offsets [F1, F2]:  -18386,      0	(-70.1 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with fixed period
+Attempting demodulation... short_width: 564, long_width: 1660, reset_limit: 1632, sync_width: 0
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=564,l=1660,r=1632,g=0,t=436,y=0'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 1 
+[00] {25} e2 2b f3 80 : 11100010 00101011 11110011 1
+
+Detected OOK package	@0.360192s
+Analyzing pulses...
+Total count:   25,  width: 53.18 ms		(13296 S)
+Pulse width distribution:
+ [ 0] count:   15,  width:  564 us [560;576]	( 141 S)
+ [ 1] count:   10,  width: 1660 us [1656;1664]	( 415 S)
+Gap width distribution:
+ [ 0] count:   14,  width: 1624 us [1624;1632]	( 406 S)
+ [ 1] count:   10,  width:  532 us [528;536]	( 133 S)
+Pulse period distribution:
+ [ 0] count:   24,  width: 2192 us [2184;2204]	( 548 S)
+Level estimates [high, low]:  15878,      7
+RSSI: -0.1 dB SNR: 33.6 dB Noise: -33.7 dB
+Frequency offsets [F1, F2]:  -17071,      0	(-65.1 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with fixed period
+Attempting demodulation... short_width: 564, long_width: 1660, reset_limit: 1636, sync_width: 0
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=564,l=1660,r=1636,g=0,t=436,y=0'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 1 
+[00] {25} e2 2b f3 80 : 11100010 00101011 11110011 1
+
+Detected OOK package	@0.430304s
+Analyzing pulses...
+Total count:    6,  width: 11.80 ms		( 2951 S)
+Pulse width distribution:
+ [ 0] count:    3,  width:  568 us [560;580]	( 142 S)
+ [ 1] count:    2,  width: 1656 us [1652;1664]	( 414 S)
+ [ 2] count:    1,  width:  832 us [832;832]	( 208 S)
+Gap width distribution:
+ [ 0] count:    3,  width: 1624 us [1620;1632]	( 406 S)
+ [ 1] count:    2,  width:  536 us [536;540]	( 134 S)
+Pulse period distribution:
+ [ 0] count:    5,  width: 2192 us [2184;2200]	( 548 S)
+Level estimates [high, low]:  15895,     10
+RSSI: -0.1 dB SNR: 32.0 dB Noise: -32.1 dB
+Frequency offsets [F1, F2]:  -15429,      0	(-58.9 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with sync/delimiter
+Attempting demodulation... short_width: 568, long_width: 1656, reset_limit: 1636, sync_width: 832
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=568,l=1656,r=1636,g=0,t=0,y=832'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 2 
+[00] { 5} e0        : 11100
+[01] { 0}           : 
+
+*** signal_start = 9976, signal_end = 120528, signal_len = 110552, pulses_found = 131
+Iteration 1. t: 278    min: 142 (79)    max: 415 (52)    delta 8
+Iteration 2. t: 278    min: 142 (79)    max: 415 (52)    delta 0
+Pulse coding: Short pulse length 142 - Long pulse length 415
+
+Short distance: 132, long distance: 405, packet distance: 4232
+
+p_limit: 278
+bitbuffer:: Number of rows: 6 
+[00] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[01] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[02] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[03] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[04] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[05] { 6} 18          : 000110
+Iteration 1. t: 0    min: 0 (0)    max: 0 (0)    delta 3567587328
+Iteration 2. t: 0    min: 0 (0)    max: 0 (0)    delta 0
+Distance coding: Pulse length 0
+
+Short distance: 1000000, long distance: 0, packet distance: 0
+
+p_limit: 0
+bitbuffer:: Number of rows: 0 
+rich@rich-Inspiron-13-7378:~$ 
+**********************************************************************************************************************
+
+*** Saving signal to file g002_433.92M_250k.cu8 (106106 samples, 262144 bytes)
+
+Fortress_S02_Keyfob Home Button
+
+
+ rtl_433 -r g002_433.92M_250k.cu8 -a 4 -A
+rtl_433 version unknown inputs file rtl_tcp RTL-SDR SoapySDR
+Use -h for usage help and see https://triq.org/ for documentation.
+Trying conf file at "rtl_433.conf"...
+Trying conf file at "/home/rich/.config/rtl_433/rtl_433.conf"...
+Trying conf file at "/usr/local/etc/rtl_433/rtl_433.conf"...
+Trying conf file at "/etc/rtl_433/rtl_433.conf"...
+Registered 122 out of 149 device decoding protocols [ 1-4 8 11-12 15-17 19-21 23 25-26 29-36 38-60 63 67-71 73-100 102-105 108-116 119 121 124-128 130-149 ]
+Test mode active. Reading samples from file: g002_433.92M_250k.cu8
+Detected OOK package	@0.165400s
+Analyzing pulses...
+Total count:   25,  width: 53.18 ms		(13295 S)
+Pulse width distribution:
+ [ 0] count:   15,  width:  560 us [556;580]	( 140 S)
+ [ 1] count:   10,  width: 1660 us [1656;1668]	( 415 S)
+Gap width distribution:
+ [ 0] count:   14,  width: 1624 us [1620;1632]	( 406 S)
+ [ 1] count:   10,  width:  532 us [528;536]	( 133 S)
+Pulse period distribution:
+ [ 0] count:   24,  width: 2192 us [2180;2204]	( 548 S)
+Level estimates [high, low]:  16002,      6
+RSSI: -0.1 dB SNR: 34.3 dB Noise: -34.4 dB
+Frequency offsets [F1, F2]:  -12230,      0	(-46.7 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with fixed period
+Attempting demodulation... short_width: 560, long_width: 1660, reset_limit: 1636, sync_width: 0
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=560,l=1660,r=1636,g=0,t=440,y=0'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 1 
+[00] {25} e2 2b fc 80 : 11100010 00101011 11111100 1
+
+Detected OOK package	@0.235508s
+Analyzing pulses...
+Total count:   25,  width: 53.21 ms		(13303 S)
+Pulse width distribution:
+ [ 0] count:   15,  width:  564 us [560;580]	( 141 S)
+ [ 1] count:   10,  width: 1660 us [1656;1668]	( 415 S)
+Gap width distribution:
+ [ 0] count:   14,  width: 1624 us [1620;1632]	( 406 S)
+ [ 1] count:   10,  width:  532 us [528;540]	( 133 S)
+Pulse period distribution:
+ [ 0] count:   24,  width: 2192 us [2184;2204]	( 548 S)
+Level estimates [high, low]:  15913,      7
+RSSI: -0.1 dB SNR: 33.6 dB Noise: -33.7 dB
+Frequency offsets [F1, F2]:  -13041,      0	(-49.7 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with fixed period
+Attempting demodulation... short_width: 564, long_width: 1660, reset_limit: 1636, sync_width: 0
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=564,l=1660,r=1636,g=0,t=436,y=0'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 1 
+[00] {25} e2 2b fc 80 : 11100010 00101011 11111100 1
+
+Detected OOK package	@0.305652s
+Analyzing pulses...
+Total count:   25,  width: 53.22 ms		(13306 S)
+Pulse width distribution:
+ [ 0] count:   15,  width:  564 us [556;576]	( 141 S)
+ [ 1] count:   10,  width: 1664 us [1660;1668]	( 416 S)
+Gap width distribution:
+ [ 0] count:   14,  width: 1624 us [1620;1632]	( 406 S)
+ [ 1] count:   10,  width:  528 us [528;540]	( 132 S)
+Pulse period distribution:
+ [ 0] count:   24,  width: 2192 us [2184;2204]	( 548 S)
+Level estimates [high, low]:  15934,      7
+RSSI: -0.1 dB SNR: 33.6 dB Noise: -33.7 dB
+Frequency offsets [F1, F2]:  -12125,      0	(-46.3 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with fixed period
+Attempting demodulation... short_width: 564, long_width: 1664, reset_limit: 1636, sync_width: 0
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=564,l=1664,r=1636,g=0,t=440,y=0'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 1 
+[00] {25} e2 2b fc 80 : 11100010 00101011 11111100 1
+
+Detected OOK package	@0.375812s
+Analyzing pulses...
+Total count:   25,  width: 53.23 ms		(13307 S)
+Pulse width distribution:
+ [ 0] count:   15,  width:  560 us [556;576]	( 140 S)
+ [ 1] count:   10,  width: 1660 us [1656;1668]	( 415 S)
+Gap width distribution:
+ [ 0] count:   14,  width: 1628 us [1620;1632]	( 407 S)
+ [ 1] count:   10,  width:  532 us [532;540]	( 133 S)
+Pulse period distribution:
+ [ 0] count:   24,  width: 2192 us [2184;2208]	( 548 S)
+Level estimates [high, low]:  15890,      8
+RSSI: -0.1 dB SNR: 33.0 dB Noise: -33.1 dB
+Frequency offsets [F1, F2]:  -12047,      0	(-46.0 kHz, +0.0 kHz)
+Guessing modulation: Pulse Width Modulation with fixed period
+Attempting demodulation... short_width: 560, long_width: 1660, reset_limit: 1636, sync_width: 0
+Use a flex decoder with -X 'n=name,m=OOK_PWM,s=560,l=1660,r=1636,g=0,t=440,y=0'
+pulse_demod_pwm(): Analyzer Device
+bitbuffer:: Number of rows: 1 
+[00] {25} e2 2b fc 80 : 11100010 00101011 11111100 1
+
+Detected OOK package	@0.445976s
+Analyzing pulses...
+Total count:    2,  width: 2.77 ms		(  693 S)
+Pulse width distribution:
+ [ 0] count:    2,  width:  572 us [568;576]	( 143 S)
+Gap width distribution:
+ [ 0] count:    1,  width: 1628 us [1628;1628]	( 407 S)
+Pulse period distribution:
+ [ 0] count:    1,  width: 2204 us [2204;2204]	( 551 S)
+Level estimates [high, low]:  15910,      7
+RSSI: -0.1 dB SNR: 33.6 dB Noise: -33.7 dB
+Frequency offsets [F1, F2]:  -12135,      0	(-46.3 kHz, +0.0 kHz)
+Guessing modulation: Un-modulated signal. Maybe a preamble...
+
+*** signal_start = 31353, signal_end = 122188, signal_len = 90835, pulses_found = 102
+Iteration 1. t: 278    min: 141 (62)    max: 416 (40)    delta 5
+Iteration 2. t: 278    min: 141 (62)    max: 416 (40)    delta 0
+Pulse coding: Short pulse length 141 - Long pulse length 416
+
+Short distance: 132, long distance: 406, packet distance: 4236
+
+p_limit: 278
+bitbuffer:: Number of rows: 5 
+[00] {25} 1d d4 03 00 : 00011101 11010100 00000011 0
+[01] {25} 1d d4 03 00 : 00011101 11010100 00000011 0
+[02] {25} 1d d4 03 00 : 00011101 11010100 00000011 0
+[03] {25} 1d d4 03 00 : 00011101 11010100 00000011 0
+[04] { 2} 00          : 00
+Iteration 1. t: 0    min: 0 (0)    max: 0 (0)    delta 3567587328
+Iteration 2. t: 0    min: 0 (0)    max: 0 (0)    delta 0
+Distance coding: Pulse length 0
+
+Short distance: 1000000, long distance: 0, packet distance: 0
+
+p_limit: 0
+bitbuffer:: Number of rows: 0 
+rich@rich-Inspiron-13-7378:~$ 
+
+****************************************************************************************************************************
+
+*** signal_start = 30357747, signal_end = 30443583, signal_len = 85836, pulses_found = 100
+Iteration 1. t: 277    min: 140 (60)    max: 414 (40)    delta 4
+Iteration 2. t: 277    min: 140 (60)    max: 414 (40)    delta 0
+Pulse coding: Short pulse length 140 - Long pulse length 414
+
+Short distance: 133, long distance: 406, packet distance: 4234
+
+p_limit: 277
+bitbuffer:: Number of rows: 4 
+[00] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[01] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[02] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+[03] {25} 1d d4 0c 00 : 00011101 11010100 00001100 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 09:49:49
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 09:49:49
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 09:49:49
+model     : Chuango-Security                       ID        : 122188
+CMD       : Test         CMD_ID    : 0
+*** signal_start = 31083685, signal_end = 31152010, signal_len = 68325, pulses_found = 75
+Iteration 1. t: 277    min: 140 (45)    max: 414 (30)    delta 1
+Iteration 2. t: 277    min: 140 (45)    max: 414 (30)    delta 0
+Pulse coding: Short pulse length 140 - Long pulse length 414
+
+Short distance: 133, long distance: 406, packet distance: 4236
+
+p_limit: 277
+bitbuffer:: Number of rows: 3 
+[00] {25} 1d d4 c0 00 : 00011101 11010100 11000000 0
+[01] {25} 1d d4 c0 00 : 00011101 11010100 11000000 0
+[02] {25} 1d d4 c0 00 : 00011101 11010100 11000000 0
+*** signal_start = 31679578, signal_end = 31752297, signal_len = 72719, pulses_found = 76
+Iteration 1. t: 277    min: 140 (46)    max: 414 (30)    delta 4
+Iteration 2. t: 277    min: 140 (46)    max: 414 (30)    delta 0
+Pulse coding: Short pulse length 140 - Long pulse length 414
+
+Short distance: 133, long distance: 406, packet distance: 4237
+
+p_limit: 277
+bitbuffer:: Number of rows: 4 
+[00] {25} 1d d4 03 00 : 00011101 11010100 00000011 0
+[01] {25} 1d d4 03 00 : 00011101 11010100 00000011 0
+[02] {25} 1d d4 03 00 : 00011101 11010100 00000011 0
+[03] { 1} 00          : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 09:49:55
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 09:49:55
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+time      : 2020-11-09 09:49:55
+model     : Chuango-Security                       ID        : 122179
+CMD       : Test         CMD_ID    : 0
+*** signal_start = 32633880, signal_end = 32711688, signal_len = 77808, pulses_found = 85
+Iteration 1. t: 276    min: 140 (49)    max: 412 (36)    delta 9
+Iteration 2. t: 276    min: 140 (49)    max: 412 (36)    delta 0
+Pulse coding: Short pulse length 140 - Long pulse length 412
+
+Short distance: 133, long distance: 406, packet distance: 4236
+
+p_limit: 276
+bitbuffer:: Number of rows: 4 
+[00] {25} 1d d4 30 00 : 00011101 11010100 00110000 0
+[01] {25} 1d d4 30 00 : 00011101 11010100 00110000 0
+[02] {25} 1d d4 30 00 : 00011101 11010100 00110000 0
+[03] {10} 1d c0       : 00011101 11
+
+****************************************************************************************************************
+
+
